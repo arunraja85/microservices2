@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice2-deployment
+  labels:
+    app: gcptestapp
+    ms: ms2
+    version: v1
+    env: dev
+  namespace: demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gcptestapp
+  template:
+    metadata:
+      labels:
+        app: gcptestapp
+    spec:
+      containers:
+        - name: ms2
+          image: gcr.io/cloud-dna-mas/microservice2:0.0.1
+          ports:
+            - containerPort: 80
